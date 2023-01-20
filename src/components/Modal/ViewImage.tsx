@@ -21,25 +21,28 @@ export function ModalViewImage({
 }: ModalViewImageProps): JSX.Element {
   // TODO MODAL WITH IMAGE AND EXTERNAL LINK
   return (
-      <Modal isOpen={isOpen} onClose={onClose} isCentered size="4xl">
-        <ModalOverlay />
-          <ModalContent
-            mx="auto"
-            my="auto"
-            height="auto"
+    <Modal isOpen={isOpen} onClose={onClose} isCentered size="4xl">
+      <ModalOverlay />
+      <ModalContent
+        mx="auto"
+        my="auto"
+        height="auto"
+        maxW={['300px', '500px', '900px']}
+        maxH={['250px', '350px', '700px']}
+      >
+        <ModalBody p="0">
+          <Image
+            src={imgUrl}
             maxW={['300px', '500px', '900px']}
-            maxH={['250px', '350px', '700px']}
-          >
-            <ModalBody p="0">
-                <Image 
-                src={imgUrl}
-                maxW={['300px', '500px', '900px']}
-                maxH={['350px', '450px', '600px']}/>
-            </ModalBody>
-            <ModalFooter bg="pGray.800" h="2rem" py="20px" borderBottomRadius="5px">
-              <Link href={imgUrl} mr="auto">Abrir original</Link>
-            </ModalFooter>
-          </ModalContent>
-      </Modal>
-  )
+            maxH={['350px', '450px', '600px']}
+          />
+        </ModalBody>
+        <ModalFooter bg="pGray.800" h="2rem" py="20px" borderBottomRadius="5px">
+          <Link href={imgUrl} mr="auto">
+            Abrir original
+          </Link>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
 }
