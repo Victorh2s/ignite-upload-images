@@ -33,7 +33,7 @@ import { api } from '../../services/api';
 
 export interface FileInputProps {
   name: string;
-  error?: FieldError;
+  error?: FieldError | string ;
   setImageUrl: Dispatch<SetStateAction<string>>;
   localImageUrl: string;
   setLocalImageUrl: Dispatch<SetStateAction<string>>;
@@ -127,7 +127,7 @@ const FileInputBase: ForwardRefRenderFunction<
   );
 
   useEffect(() => {
-    if (error?.message && isSending && cancelToken?.cancel) {
+    if (error && isSending && cancelToken?.cancel) {
       cancelToken.cancel('Cancelled image upload.');
       setCancelToken(null);
     }
@@ -162,8 +162,8 @@ const FileInputBase: ForwardRefRenderFunction<
             borderRadius="md"
             bgColor="pGray.800"
             color="pGray.200"
-            borderWidth={error?.message && 2}
-            borderColor={error?.message && 'red.500'}
+            borderWidth={error && 2}
+            borderColor={error && 'red.500'}
           >
             {isSending ? (
               <>
@@ -181,7 +181,7 @@ const FileInputBase: ForwardRefRenderFunction<
             ) : (
               <Box pos="relative" h="full">
                 {!!error && (
-                  <Tooltip label={error.message} bg="red.500">
+                  <Tooltip label={error} bg="red.500">
                     <FormErrorMessage
                       pos="absolute"
                       right={2}
